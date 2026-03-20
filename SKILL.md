@@ -1,6 +1,18 @@
 ---
 name: user-layer
 description: Use this skill when the user wants a UserLayer report for an App Store or Google Play app, including full analysis, polling, and follow-up questions grounded in real reviews. Trigger it for competitor review analysis, user pain point extraction, segment discovery, and opportunity validation tasks.
+homepage: https://github.com/houyongsheng/userlayer
+metadata:
+  clawdbot:
+    requires:
+      env:
+        - API_KEY
+    primaryEnv: API_KEY
+    optionalEnv:
+      - LAUNCHBASE_API_URL
+    files:
+      - scripts/main.py
+      - scripts/call_api.py
 ---
 
 # UserLayer
@@ -24,6 +36,12 @@ Use the bundled wrappers in `scripts/main.py`. Do not hand-roll raw HTTP request
 - `API_KEY` must be set to a valid UserLayer API key.
 - `LAUNCHBASE_API_URL` is optional.
   Default: `https://lb-api.workflowhunt.com`
+
+## Credentials and Host
+
+- Primary credential: `API_KEY`
+- Default API host: `https://lb-api.workflowhunt.com`
+- `API_KEY` should be scoped only for UserLayer API access and treated as a paid production credential.
 
 ## Available Wrappers
 
