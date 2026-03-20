@@ -31,6 +31,41 @@ Use the bundled wrappers in `scripts/main.py`. Do not hand-roll raw HTTP request
 - `check_status(analysis_id: str)`
 - `query(pain_point_id: str, question: str)`
 
+## Typical Flow
+
+1. Call `analyze()` to start a full async run.
+2. Poll with `check_status()` until the report is complete.
+3. Read the returned `pain_points`.
+4. Use a `pain_point.id` with `query()` for targeted follow-up questions.
+
+You do not need a separate preview step. `analyze()` is the main public entry point.
+
+## Pricing Baseline
+
+- One `analyze()` run costs `$2.99` and includes retrieval plus full analysis of the latest `100` reviews.
+- If `max_reviews` is raised above `100`, extra reviews are billed as add-ons at `$0.01` per extra review.
+- `query()` is billed at `$0.01 / 1K tokens`.
+
+## Key Response Shapes
+
+- `analyze()` starts an async job and returns a lightweight payload with:
+  - `success`
+  - `data.analysis_id`
+  - `data.status`
+- `check_status()` returns the full completed report when ready, including:
+  - `data.pain_points`
+  - `data.user_segments`
+  - `data.opportunities`
+  - `sources`
+  - `usage`
+- `query()` returns a follow-up answer for a specific pain point, including:
+  - `data.answer`
+  - `data.confidence`
+  - `sources`
+  - `usage`
+
+Treat `pain_points[].id` from a completed analysis as the required input for `query()`.
+
 ## Operating Rules
 
 - Default review count is `100` latest reviews.
