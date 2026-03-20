@@ -20,6 +20,25 @@ Use the bundled wrappers in `scripts/main.py`. Do not hand-roll raw HTTP request
 - `LAUNCHBASE_API_URL` is optional.
   Default: `https://lb-api.workflowhunt.com`
 
+## Install and Prompt Your AI
+
+Install the skill:
+
+```bash
+npx clawhub@latest install userlayer
+```
+
+Then send your AI a prompt like this:
+
+```text
+Please learn this skill first: npx clawhub@latest install userlayer
+
+If it is easier for you to inspect the repo first, use: https://github.com/houyongsheng/userlayer
+
+After installing it, use the UserLayer skill to analyze this app and return pain points, user segments, and opportunities grounded in real reviews:
+<replace this with an App Store or Google Play URL>
+```
+
 ## Credentials and Host
 
 - Primary credential: `API_KEY`
