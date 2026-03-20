@@ -10,7 +10,7 @@ SERVICE_NAME = "userlayer"
 def analyze(app_url: str, max_reviews: int | None = None) -> Dict[str, Any]:
     """
     Submit a full async analysis job.
-    Default review count is 100. Callers may explicitly raise it when they want broader coverage.
+    Default review count is 100 latest reviews. Callers may explicitly raise it when they want broader coverage.
     """
     params: Dict[str, Any] = {"app_url": app_url}
     if max_reviews is not None:
@@ -19,21 +19,6 @@ def analyze(app_url: str, max_reviews: int | None = None) -> Dict[str, Any]:
     return call_api(
         service=SERVICE_NAME,
         endpoint="/analyze",
-        params=params,
-    )
-
-def preview(app_url: str, max_reviews: int | None = None) -> Dict[str, Any]:
-    """
-    Submit a lighter paid preview.
-    Default review count is 100. Preview currently supports up to 500 latest reviews.
-    """
-    params: Dict[str, Any] = {"app_url": app_url}
-    if max_reviews is not None:
-        params["max_reviews"] = max_reviews
-
-    return call_api(
-        service=SERVICE_NAME,
-        endpoint="/preview",
         params=params,
     )
 
