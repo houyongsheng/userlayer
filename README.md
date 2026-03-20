@@ -1,20 +1,3 @@
----
-name: user-layer
-description: Use this skill when the user wants a UserLayer report for an App Store or Google Play app, including full analysis, polling, and follow-up questions grounded in real reviews. Trigger it for competitor review analysis, user pain point extraction, segment discovery, and opportunity validation tasks.
-homepage: https://github.com/houyongsheng/userlayer
-metadata:
-  clawdbot:
-    requires:
-      env:
-        - API_KEY
-    primaryEnv: API_KEY
-    optionalEnv:
-      - LAUNCHBASE_API_URL
-    files:
-      - scripts/main.py
-      - scripts/call_api.py
----
-
 # UserLayer
 
 UserLayer turns App Store and Google Play reviews into structured research outputs:
